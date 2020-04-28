@@ -9,7 +9,6 @@ namespace DAL.Entity.Models
         public string LastName { get; set; }
         public string City { get; set; }
         public string Phone { get; set; }
-        public int SpecialityId { get; set; }
         public ICollection<Speciality> Specialities { get; set; }
 
         public Student()

@@ -30,9 +30,9 @@ namespace BLL.Services
             _db.Save();
         }
 
-        public void AddRange(IEnumerable<StudentDto> entities)
+        public void AddRange(IEnumerable<StudentDto> studentDtos)
         {
-            foreach (var entity in entities)
+            foreach (var entity in studentDtos)
             {
                 var student = _autoMapper.Map<Student>(entity);
                 _db.StudentRepository.Add(student);
@@ -40,23 +40,41 @@ namespace BLL.Services
             _db.Save();
         }
 
-        public StudentDto Get(int id) =>
+        public StudentDto Get(int id) => 
             _autoMapper.Map<StudentDto>(_db.StudentRepository.Get(id));
 
-        public StudentDto GetAsync(int id) => 
-            _autoMapper.Map<StudentDto>(_db.StudentRepository.GetAsync(id));
+        public StudentDto GetAsync(int id)
+        {
+          var task = Task.Run(() => _db.StudentRepository.GetAsync(id));
+          return _autoMapper.Map<StudentDto>(task.Result);
+        }
 
         public IEnumerable<StudentDto> GetAll() =>
             _autoMapper.Map<IEnumerable<StudentDto>>(_db.StudentRepository.GetAll());
 
-        public IEnumerable<StudentDto> GetAllAsync() =>
-            _autoMapper.Map<IEnumerable<StudentDto>>(_db.StudentRepository.GetAllAsync());
+        public IEnumerable<StudentDto> GetAllAsync()
+       {
+           var task = Task.Run(() => _db.StudentRepository.GetAllAsync());
+           return _autoMapper.Map<IEnumerable<StudentDto>>(task.Result);
+       }
+
+        public void Update(StudentDto studentDto)
+        {
+            if(studentDto == null)
+                throw new ArgumentNullException();
+            
+            var student = _autoMapper.Map<Student>(studentDto);
+            _db.StudentRepository.Update(student);
+            _db.Save();
+        }
 
         public void Remove(int id)
         {
-            var studentDto = Get(id);
-            var student = _autoMapper.Map<Student>(studentDto);
-            _db.StudentRepository.Remove(student);
+            var student = _db.StudentRepository.Get(id);
+            if (student != null)
+                _db.StudentRepository.Remove(student);
+            else
+                throw new NullReferenceException();
 
             _db.Save();
         }

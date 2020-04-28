@@ -1,17 +1,12 @@
 ﻿using System.Collections.Generic;
+using DAL.Entity.Models;
 
-namespace DAL.Entity.Models
+namespace BLL.Dto
 {
-    public class Trainer
+    public class TrainerDto
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Speciality> Specialities { get; set; }
-
-        public Trainer()
-        {
-            Specialities = new List<Speciality>();
-        }
     }
 }
