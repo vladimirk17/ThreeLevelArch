@@ -1,5 +1,6 @@
 ﻿using DAL.Entity.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace DAL.Entity.Interfaces
 {
@@ -9,5 +10,7 @@ namespace DAL.Entity.Interfaces
         IRepository<Course> CourseRepository { get; }
 
         int Save();
+
+        Task<int> SaveAsync();
     }
 }

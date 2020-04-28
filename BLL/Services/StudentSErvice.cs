@@ -6,6 +6,7 @@ using DAL.Entity.Models;
 using DAL.Entity.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -42,8 +43,14 @@ namespace BLL.Services
         public StudentDto Get(int id) =>
             _autoMapper.Map<StudentDto>(_db.StudentRepository.Get(id));
 
+        public StudentDto GetAsync(int id) => 
+            _autoMapper.Map<StudentDto>(_db.StudentRepository.GetAsync(id));
+
         public IEnumerable<StudentDto> GetAll() =>
             _autoMapper.Map<IEnumerable<StudentDto>>(_db.StudentRepository.GetAll());
+
+        public IEnumerable<StudentDto> GetAllAsync() =>
+            _autoMapper.Map<IEnumerable<StudentDto>>(_db.StudentRepository.GetAllAsync());
 
         public void Remove(int id)
         {

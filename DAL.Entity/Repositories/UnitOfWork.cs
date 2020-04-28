@@ -11,8 +11,8 @@ namespace DAL.Entity.Repositories
         private readonly ThreeTierContext _context;
         private bool _disposed = false;
 
-        public IRepository<Student> StudentRepository { get; private set; }
-        public IRepository<Course> CourseRepository { get; private set; }
+        public IRepository<Student> StudentRepository { get; }
+        public IRepository<Course> CourseRepository { get; }
 
         public UnitOfWork()
         {
@@ -25,7 +25,7 @@ namespace DAL.Entity.Repositories
         public int Save() =>
             _context.SaveChanges();
 
-        public async Task<int> SaveAsync() => //TODO append interfaces with async methods 
+        public async Task<int> SaveAsync() =>     
             await _context.SaveChangesAsync();
 
         private void Dispose(bool disposing)
