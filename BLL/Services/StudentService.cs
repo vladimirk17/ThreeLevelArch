@@ -30,33 +30,34 @@ namespace BLL.Services
             _db.Save();
         }
 
-        public void AddRange(IEnumerable<StudentDto> studentDtos)
+        public void AddManyStudents(IEnumerable<StudentDto> studentDtos)
         {
             foreach (var entity in studentDtos)
             {
                 var student = _autoMapper.Map<Student>(entity);
                 _db.StudentRepository.Add(student);
             }
+
             _db.Save();
         }
 
-        public StudentDto Get(int id) => 
-            _autoMapper.Map<StudentDto>(_db.StudentRepository.Get(id));
-
-        public StudentDto GetAsync(int id)
+        public async Task<StudentDto> GetAsync(int id)
         {
-          var task = Task.Run(() => _db.StudentRepository.GetAsync(id));
-          return _autoMapper.Map<StudentDto>(task.Result);
+            var student = await _db.StudentRepository.GetAsync(id);
+            return _autoMapper.Map<StudentDto>(student);
         }
+
+        public async Task<IEnumerable<StudentDto>> GetAllAsync()
+        {
+            var student = await _db.StudentRepository.GetAllAsync();
+            return _autoMapper.Map<IEnumerable<StudentDto>>(student);
+        }
+
+        public StudentDto Get(int id) =>
+            _autoMapper.Map<StudentDto>(_db.StudentRepository.Get(id));
 
         public IEnumerable<StudentDto> GetAll() =>
             _autoMapper.Map<IEnumerable<StudentDto>>(_db.StudentRepository.GetAll());
-
-        public IEnumerable<StudentDto> GetAllAsync()
-       {
-           var task = Task.Run(() => _db.StudentRepository.GetAllAsync());
-           return _autoMapper.Map<IEnumerable<StudentDto>>(task.Result);
-       }
 
         public void Update(StudentDto studentDto)
         {
@@ -65,7 +66,7 @@ namespace BLL.Services
                 throw new ArgumentException($"There is no student with id {studentDto.Id}");
             student.Name = studentDto.Name;
             student.City = studentDto.City;
-            
+
             _db.StudentRepository.Update(student);
             _db.Save();
         }

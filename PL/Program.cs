@@ -12,13 +12,13 @@ namespace PL
             AutoMapperConfig.Initialize();
             var studentService = new StudentService();
 
-            var allStudents = studentService.GetAll();
+            var allStudents = studentService.GetAllAsync().Result;
             foreach (var student in allStudents)
                 Console.WriteLine(student.Name);
 
-            var student1 = studentService.Get(1);
+            var student1 = studentService.GetAsync(1).Result;
             Console.WriteLine(student1.Name);
-
+            
             var student2 = new StudentDto
             {
                 Name = "Petr",
@@ -27,10 +27,10 @@ namespace PL
                 Phone = "+380000322"
             };
             studentService.Add(student2);
-
+            
             var student3 = new StudentDto {Id = 1, Name = "Sergey", City = "Kyiv"};
             studentService.Update(student3);
-
+            
             studentService.Remove(1);
         }
     }

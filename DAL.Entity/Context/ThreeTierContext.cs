@@ -1,5 +1,4 @@
 using System.Data.Entity;
-using DAL.Entity.Configuration;
 using DAL.Entity.Context.Configuration;
 using DAL.Entity.Models;
 
@@ -7,13 +6,14 @@ namespace DAL.Entity.Context
 {
     public class ThreeTierContext : DbContext
     {
-        static ThreeTierContext() => 
+        static ThreeTierContext() =>
             Database.SetInitializer(new DbInitializer());
 
         public ThreeTierContext()
             : base("name=ThreeTierContext")
         {
         }
+
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
@@ -23,9 +23,9 @@ namespace DAL.Entity.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsToModels();
+            
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Configurations.Add(new StudentConfig());
-            modelBuilder.Configurations.Add(new TrainerConfig());
         }
     }
 }

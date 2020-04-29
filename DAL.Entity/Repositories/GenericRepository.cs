@@ -1,5 +1,4 @@
-﻿using DAL.Entity.Context;
-using DAL.Entity.Interfaces;
+﻿using DAL.Entity.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Entity.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly DbSet<TEntity> _entity;
 
-        public Repository(DbContext context)
+        public GenericRepository(DbContext context)
         {
             _entity = context.Set<TEntity>();
         }

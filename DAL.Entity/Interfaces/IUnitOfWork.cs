@@ -6,8 +6,8 @@ namespace DAL.Entity.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Student> StudentRepository { get; }
-        IRepository<Course> CourseRepository { get; }
+        IStudentRepository StudentRepository { get; }
+        ICourseRepository CourseRepository { get; }
 
         int Save();
 

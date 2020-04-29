@@ -56,8 +56,11 @@
     <Compile Include="Configuration\StudentConfig.cs" />
     <Compile Include="Configuration\TrainerConfig.cs" />
     <Compile Include="Context\Configuration\DbInitializer.cs" />
+    <Compile Include="Context\Configuration\ModelBuilderExtensions.cs" />
     <Compile Include="Context\ThreeTierContext.cs" />
+    <Compile Include="Interfaces\ICourseRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IStudentRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\202004161233162_InitialCreate.cs" />
     <Compile Include="Migrations\202004161233162_InitialCreate.designer.cs">
@@ -95,7 +98,9 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
