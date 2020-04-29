@@ -13,7 +13,7 @@ namespace BLL.Services
     public class StudentService : IStudentService
     {
         private readonly IUnitOfWork _db;
-        private IMapper _autoMapper = Mapper.Instance;
+        private readonly IMapper _autoMapper = Mapper.Instance;
 
         public StudentService()
         {
@@ -60,10 +60,12 @@ namespace BLL.Services
 
         public void Update(StudentDto studentDto)
         {
-            if(studentDto == null)
-                throw new ArgumentNullException();
+            var student = _db.StudentRepository.Get(studentDto.Id);
+            if (student == null)
+                throw new ArgumentException($"There is no student with id {studentDto.Id}");
+            student.Name = studentDto.Name;
+            student.City = studentDto.City;
             
-            var student = _autoMapper.Map<Student>(studentDto);
             _db.StudentRepository.Update(student);
             _db.Save();
         }

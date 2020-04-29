@@ -9,7 +9,7 @@ namespace DAL.Entity.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ThreeTierContext _context;
-        private bool _disposed = false;
+        private bool _disposed;
 
         public IRepository<Student> StudentRepository { get; }
         public IRepository<Course> CourseRepository { get; }

@@ -14,7 +14,7 @@ namespace DAL.Entity.Repositories
     {
         private readonly DbSet<TEntity> _entity;
 
-        public Repository(ThreeTierContext context)
+        public Repository(DbContext context)
         {
             _entity = context.Set<TEntity>();
         }
