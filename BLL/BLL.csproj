@@ -59,7 +59,11 @@
   <ItemGroup>
     <Compile Include="Configurations\AutoMapperConfig.cs" />
     <Compile Include="Dto\CourseDto.cs" />
+    <Compile Include="Dto\GroupDto.cs" />
+    <Compile Include="Dto\RoomDto.cs" />
+    <Compile Include="Dto\SpecialityDto.cs" />
     <Compile Include="Dto\StudentDto.cs" />
+    <Compile Include="Dto\TrainerDto.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IStudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,6 +3,7 @@ using DAL.Entity.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace DAL.Entity.Repositories
     {
         private readonly DbSet<TEntity> _entity;
 
-        public Repository(ThreeTierContext context)
+        public Repository(DbContext context)
         {
             _entity = context.Set<TEntity>();
         }
@@ -23,6 +24,11 @@ namespace DAL.Entity.Repositories
 
         public void AddRange(IEnumerable<TEntity> entities) =>
             _entity.AddRange(entities);
+
+        public void Update(TEntity entity)
+        {
+            _entity?.AddOrUpdate(entity);
+        }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) =>
             _entity.Where(predicate);

@@ -79,6 +79,14 @@
     <Compile Include="Migrations\202004271451138_ConfiguredTrainerAndCourseTables.Designer.cs">
       <DependentUpon>202004271451138_ConfiguredTrainerAndCourseTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004281337516_DropIdAttributesForFKsInModels.cs" />
+    <Compile Include="Migrations\202004281337516_DropIdAttributesForFKsInModels.Designer.cs">
+      <DependentUpon>202004281337516_DropIdAttributesForFKsInModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004290742320_AdjustedDataAnnotations.cs" />
+    <Compile Include="Migrations\202004290742320_AdjustedDataAnnotations.Designer.cs">
+      <DependentUpon>202004290742320_AdjustedDataAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Group.cs" />
@@ -109,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004271451138_ConfiguredTrainerAndCourseTables.resx">
       <DependentUpon>202004271451138_ConfiguredTrainerAndCourseTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004281337516_DropIdAttributesForFKsInModels.resx">
+      <DependentUpon>202004281337516_DropIdAttributesForFKsInModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004290742320_AdjustedDataAnnotations.resx">
+      <DependentUpon>202004290742320_AdjustedDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entity.Models
 {
     public class Group
     {
         public int GroupId { get; set; }
+        [Required]
         public int GroupName { get; set; }
-        public int RoomId { get; set; }
-        public int SpecialityId { get; set; }
         public Speciality Speciality { get; set; }
         public Room Room { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
@@ -16,6 +16,7 @@ namespace DAL.Entity.Models
         public Group()
         {
             Trainers = new List<Trainer>();
+            Students = new List<Student>();
         }
     }
 }

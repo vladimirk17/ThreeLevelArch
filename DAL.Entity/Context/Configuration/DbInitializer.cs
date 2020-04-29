@@ -7,12 +7,12 @@ namespace DAL.Entity.Context.Configuration
     {
         protected override void Seed(ThreeTierContext context)
         {
-            Student student1 = new Student
+            var student1 = new Student
             {
                 Name = "Ivan",
                 LastName = "Petrov",
                 Phone = "+3802225551",
-                City = "Kyiv",
+                City = "Kyiv"
             };
 
             context.Students.Add(student1);

@@ -1,45 +1,37 @@
 ﻿using BLL.Configurations;
-using BLL.Dto;
 using BLL.Services;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using DAL.Entity.Context;
+using BLL.Dto;
 
 namespace PL
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            
             AutoMapperConfig.Initialize();
-            StudentService studentService = new StudentService();
+            var studentService = new StudentService();
 
-            using (var db = new ThreeTierContext())
-            {
-                var names = from s in db.Students select s;
-                foreach (var student in names)
-                {
-                    Console.WriteLine(student.Name);
-                }
-            }
-
-            // Console.ReadKey();
-
-            /*
-            IEnumerable<StudentDto> studentsList = studentService.GetStudents();
-
-            foreach (var student in studentsList)
+            var allStudents = studentService.GetAll();
+            foreach (var student in allStudents)
                 Console.WriteLine(student.Name);
 
-            Console.WriteLine(new string('*', 50));
+            var student1 = studentService.Get(1);
+            Console.WriteLine(student1.Name);
 
-            var courseList = studentService.GetCourses();
-            foreach (var course in courseList)
-                Console.WriteLine(course.Name);
-            */
+            var student2 = new StudentDto
+            {
+                Name = "Petr",
+                LastName = "Petrov",
+                City = "Konotop",
+                Phone = "+380000322"
+            };
+            studentService.Add(student2);
+
+            var student3 = new StudentDto {Id = 1, Name = "Sergey", City = "Kyiv"};
+            studentService.Update(student3);
+
+            studentService.Remove(1);
         }
     }
 }
